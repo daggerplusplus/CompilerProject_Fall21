@@ -17,13 +17,13 @@ public class ProjectGUI extends JFrame {
         super(title);
         mainPanel = new javax.swing.JPanel();
 
-<<<<<<< HEAD
+
         //JButton b1 = new JButton("hey");
         //mainPanel.add(b1);
-=======
+
         JButton b1 = new JButton("hey");
         mainPanel.add(b1);
->>>>>>> 95fd14fba1ec0f5de899f9d145704af6a6e50950
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
