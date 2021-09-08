@@ -42,9 +42,7 @@ public class ProjectGUI extends JFrame {
         mainPanel.add(importButton);
         mainPanel.add(saveButton);
         mainPanel.add(translateButton);
-        frame.getContentPane().add(mainPanel,BorderLayout.CENTER);       
-        
-        
+        frame.getContentPane().add(mainPanel,BorderLayout.CENTER);        
         
         importButton.addActionListener(new ActionListener() {
             @Override
@@ -58,10 +56,7 @@ public class ProjectGUI extends JFrame {
 
                 }
             }
-        
-
-        });
-        
+        });        
     }
 
     public static void main(String[] args) {
