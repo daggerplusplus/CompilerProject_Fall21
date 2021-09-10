@@ -1,16 +1,16 @@
 import java.util.*;
+import java.nio.file.*;
+import java.io.*;
 
-
-
-    private Scanner reader;
+//    private Scanner reader;
 //    private final String codePath; //pathway of the file containing the Quick Basic code
 //    private String basicCode = "";
 //    private int position;
 //    private String currentString;
-//    private static List<String> basicCodeList;
-    private String previousCharacter;
-    private List<String> listOfVariables;
-    private FileWriter Output;
+//    private static List<String> inputList;
+//    private String previousCharacter;
+//    private List<String> listOfVariables;
+//    private FileWriter Output;
 //    private static parserFile parserFile;
 //    private String holdNextLine;
 //    protected static List<String> lineNumbers;
@@ -20,36 +20,31 @@ import java.util.*;
 //    private String currChar;
 //    public static ArrayList<String> tokenInfo = new ArrayList<>();
 
-import java.nio.file.*;
-import java.io.*;
-import java.util.*;
-
 public class Lexer {
 
-    private final String codePath; //pathway of the file containing the input java code
+    private final String codePath; // pathway of the file containing the input java code
     private Scanner reader;
     private String input = "";
     private int position;
     private String currentString;
     private static List<String> inputList;
-    private String previousCharacter;
-    private List<String> listOfVariables;
+    // private String previousCharacter;
+    // private List<String> listOfVariables;
     private FileWriter Output;
-    private static parserFile parserFile;
+    // private static parserFile parserFile;
     private String holdNextLine;
     protected static List<String> lineNumbers;
     private int tempCount;
     private String hold;
-    private int posHold;
-    private String currChar;
+    // private int posHold;
+    // private String currChar;
     public static ArrayList<String> tokenInfo = new ArrayList<>();
 
-
-Lexer() {
+    Lexer() {
         codePath = "input.java";
         position = -1;
-        previousCharacter = "";
-        listOfVariables = new LinkedList<>();
+        // previousCharacter = "";
+        // listOfVariables = new LinkedList<>();
         lineNumbers = new ArrayList<>();
     }
 
@@ -58,7 +53,7 @@ Lexer() {
             reader = new Scanner(new File(codePath));
             while (reader.hasNextLine()) {
                 holdNextLine = reader.nextLine();
-                if (holdNextLine.contains("//" || ""))// '//' = comment
+                if (holdNextLine.contains("//") || holdNextLine.contains(""))// '//' = comment
                     continue;
                 if (!holdNextLine.equals("")) {
                     lineNumbers.add(holdNextLine.substring(0, 3));
@@ -66,7 +61,6 @@ Lexer() {
                 }
             }
             reader.close();
-
 
             inputList = new LinkedList<>(Arrays.asList(input.split(" ")));
         } catch (FileNotFoundException e) {
@@ -160,9 +154,9 @@ Lexer() {
         }
         //99:
         //Stores symbolTable in array
-        String symbolTable[] = createSymbolTable("symbol");
+        String symbolTable[] = createSymbolTable("symbol.txt");
 
-        int lineCounter = 0;
+        //int lineCounter = 0;
         while (position < inputList.size()) {
             handleColon();
 
@@ -175,16 +169,11 @@ Lexer() {
                     handleSemicolon();
                     break;
                 }
+            }
+        }
+    }
 
-
-
-
-
-
-String symbolTable[] = createSymbolTable(symbol.txt);
-
-
- private String[] createSymbolTable(String symbolTablePath) {
+    private String[] createSymbolTable(String symbolTablePath) throws IOException {
         String[] symbolTable = {};
         boolean fileExists = false;
         String symbolTableContents = "";
@@ -196,11 +185,10 @@ String symbolTable[] = createSymbolTable(symbol.txt);
             System.out.print("File not found: " + e.getMessage());
         }
 
-
         if (fileExists) {
             while (reader.hasNextLine()) {
                 symbolTableContents += reader.nextLine();
-                //Output.write(symbolTableContents);
+                Output.write(symbolTableContents);
                 symbolTable = symbolTableContents.split("\\|");
             }
 
@@ -209,3 +197,62 @@ String symbolTable[] = createSymbolTable(symbol.txt);
         }
         return symbolTable;
     }
+
+    private void handleColon() {
+        if (currentString.endsWith(":") && !currentString.equals(":")) {
+
+            String reformatCharacter = currentString.replace(":", "").trim();
+            inputList.set(position, reformatCharacter);
+            currentString = inputList.get(position);
+            inputList.add(position + 1, ":");
+            // dont change these position variables. add inserts before it and set replaces
+            // at position
+
+        }
+    }
+
+    private void handleSemicolon() {
+        if (currentString.endsWith(";") && !currentString.equals(";")) {
+
+            String reformatCharacter = currentString.replace(";", "").trim();
+            inputList.set(position, reformatCharacter);
+            currentString = inputList.get(position);
+            inputList.add(position + 1, ";");
+            // dont change these position variables. add inserts before it and set replaces
+            // at position
+
+        }
+    }
+
+    protected String getNextString() {
+        position += 1;
+        if (position < inputList.size())
+            currentString = inputList.get(position);
+        return currentString;
+    }
+
+    protected String getPreviousCharacter() {
+        if (position > 0)
+            tempCount = position - 1;
+        hold = inputList.get(tempCount);
+
+        return hold;
+    }
+
+    public static List<String> getinputList() {
+        return inputList;
+    }
+
+    public static ArrayList<String> getTokenInfo() {
+        return tokenInfo;
+    }
+
+    public static List<String> getLineNumbers() {
+        return lineNumbers;
+    }
+
+    /*
+     * public static parserFile getParserFile(){ return parserFile; }
+     */
+
+}

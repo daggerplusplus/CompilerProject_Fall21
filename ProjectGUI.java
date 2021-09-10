@@ -1,3 +1,4 @@
+
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ProjectGUI extends JFrame {     
-
+/*
     private static void createWindow() {
         JFrame frame = new JFrame("Java to C# Translator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,9 +59,15 @@ public class ProjectGUI extends JFrame {
             }
         });        
     }
+    */
 
     public static void main(String[] args) {
-        createWindow();
+        //createWindow();
+        
+
+        Lexer lexer = new Lexer();
+        lexer.readFile();
+        
     }
 }
     
