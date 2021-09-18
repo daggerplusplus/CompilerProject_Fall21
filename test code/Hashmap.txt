@@ -1,0 +1,29 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    static HashMap<String,String> map = new HashMap<String,String>();
+    
+     static String getToken(String a) {
+          return map.get(a);
+      }
+    
+    public static void main(String args[]) {
+      Scanner input = new Scanner(System.in);
+      
+      map.put("System", "KEYWORD");
+      map.put("out", "KEYWORD");
+      map.put("(", "LPAREN");    
+      map.put(")", "RPAREN");
+        
+        
+      
+      System.out.print("Enter a lexeme and get its token back: ");
+      String lexeme = input.next();      
+      String token = getToken(lexeme);
+
+      System.out.println(token);
+
+      input.close();
+    }
+}

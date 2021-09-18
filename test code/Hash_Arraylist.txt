@@ -1,0 +1,56 @@
+import java.util.*;         //need HashMap and Arraylist imports
+import java.util.Scanner;
+
+public class Main {
+    static HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
+  
+    public static Object getKeyFromValue(HashMap<String,ArrayList<String>> hm, Object value) {
+    for (Object o : hm.keySet()) {
+      if (hm.get(o).contains(value)) {
+        return o;
+      }
+    }
+    return null;
+  }  
+
+    
+    public static void main(String args[]) {
+      Scanner input = new Scanner(System.in);     
+
+      map.put("KEYWORD",new ArrayList<String>());
+      map.get("KEYWORD").add("System"); map.get("KEYWORD").add("out"); map.get("KEYWORD").add("print"); map.get("KEYWORD").add("println"); map.get("KEYWORD").add("abstract"); map.get("KEYWORD").add("private"); map.get("KEYWORD").add("protected"); map.get("KEYWORD").add("write"); map.get("KEYWORD").add("boolean");map.get("KEYWORD").add("break"); map.get("KEYWORD").add("byte"); map.get("KEYWORD").add("catch"); map.get("KEYWORD").add("class");map.get("KEYWORD").add("continue"); map.get("KEYWORD").add("const"); map.get("KEYWORD").add("default"); map.get("KEYWORD").add("enum"); map.get("KEYWORD").add("extends"); map.get("KEYWORD").add("final"); map.get("KEYWORD").add("finally"); map.get("KEYWORD").add("interface"); map.get("KEYWORD").add("main"); map.get("KEYWORD").add("public"); map.get("KEYWORD").add("static"); map.get("KEYWORD").add("String"); map.get("KEYWORD").add("return"); map.get("KEYWORD").add("void"); map.get("KEYWORD").add("volatile"); map.get("KEYWORD").add("this"); map.get("KEYWORD").add("throw"); map.get("KEYWORD").add("try"); map.get("KEYWORD").add("var");
+
+      map.put("DOUBLE", new ArrayList<String>());
+      map.get("DOUBLE").add("double");
+
+      map.put("INTEGER",new ArrayList<String>());
+      map.get("INTEGER").add("int"); map.get("INTEGER").add("long"); map.get("INTEGER").add("short");
+
+      map.put("FLOAT",new ArrayList<String>());
+      map.get("FLOAT").add("float");
+
+      map.put("CONDITIONAL",new ArrayList<String>());
+      map.get("CONDITIONAL").add("if");map.get("CONDITIONAL").add("else"); 
+
+      map.put("WHILE", new ArrayList<String>());
+      map.get("WHILE").add("while"); map.get("WHILE").add("do");
+
+      map.put("SWITCH", new ArrayList<String>());
+      map.get("SWITCH").add("switch");map.get("SWITCH").add("case");
+
+      map.put("ARITHMETIC", new ArrayList<String>());
+      map.get("ARITHMETIC").add("+"); map.get("ARITHMETIC").add("-");
+      map.get("ARITHMETIC").add("*"); map.get("ARITHMETIC").add("/");  
+
+      map.put("ASSIGNMENT", new ArrayList<String>());
+      map.get("ASSIGNMENT").add("=");
+        
+      
+      System.out.print("Enter a lexeme and get its token back: ");
+      String lexeme = input.next();            
+      System.out.println(getKeyFromValue(map, lexeme));
+      
+
+      input.close();
+    }
+}

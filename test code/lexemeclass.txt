@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+class Main {
+  static void matchLexeme(Lexeme object,String l)
+  {
+    if (object.getId().equals(l)) {         
+      System.out.println("Token: " +object.getToken());  
+      System.out.println("C# Equivalent: " +object.getToken());
+    }
+  }
+
+  public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    Lexeme Lprotected = new Lexeme("protected","protected","KEYWORD");
+    Lexeme Lfloat = new Lexeme("float","float","FLOAT");
+    Lexeme LSystem = new Lexeme("System","Console","KEYWORD");
+
+    //System.out.println(Lprotected.token);
+    //System.out.println(Lfloat.token);
+    //System.out.print("Java " + LSystem.getId() + " = " + LSystem.getCSharpEquivalent() + " in C#.");
+    System.out.print("Input lexeme: ");
+    String lexeme = input.next();
+    
+    
+    matchLexeme(LSystem,lexeme);
+    //System.out.println(lexeme);
+
+
+
+    input.close();
+  }
+}
