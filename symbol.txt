@@ -1,3 +1,7 @@
+System|Console|
+out|out|
+print|write|
+println|WriteLine|
 abstract|abstract|
 boolean|bool|
 break|break|
@@ -29,6 +33,7 @@ public|public|
 short|short|
 static|static|
 switch|switch|
+String|string|
 return|return|
 void|void|
 volatile|volatile|
@@ -52,5 +57,9 @@ while|while|
 ;|;|
 (|(|
 )|)|
-System.out.print|Console.out.write|
-System.out.println|Console.Out.WriteLine|
+.|.|
+,|,|
+[|[|
+]|]|
+}|}|
+{|{|
