@@ -15,9 +15,12 @@ import java.awt.event.ActionEvent;
   public class Main {
 
 
-    public static void main(String[] args) {
-        // createWindow();
+    public static void main(String[] args) {        
+        ProjectGUI.createWindow();
+        
+        
 
+        /*
         LexerDraft lexer = new LexerDraft();
         lexer.readFile();
         try {
@@ -25,6 +28,6 @@ import java.awt.event.ActionEvent;
         } catch (IOException E) {
 
         }
-
+        */
     }
 }

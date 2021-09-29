@@ -38,7 +38,7 @@ public class LexerDraft {
     protected static List<String> lineNumbers;
 
     private int tempCount;
-    private String hold;
+    private String hold;    
     // private int posHold;
     // private String currChar;
     public static ArrayList<String> tokenInfo = new ArrayList<>();
@@ -47,7 +47,8 @@ public class LexerDraft {
     public static ArrayList<String> symbolTable = new ArrayList<>();
 
     LexerDraft() {
-        codePath = "input.java";
+        codePath = ProjectGUI.getInputPath();
+        //codePath = "input.java";
         position = -1;
         // previousCharacter = "";
         // listOfVariables = new LinkedList<>();
@@ -119,9 +120,9 @@ public class LexerDraft {
 
         tokenType.add("PRINT");              //8
 
-        tokenType.add("COMPARISON");         //9 --
-        tokenType.add("ASSIGNMENT");         //10 --
-        tokenType.add("ARITHMETIC");         //11 --
+        tokenType.add("COMPARISON");         //9 
+        tokenType.add("ASSIGNMENT");         //10 
+        tokenType.add("ARITHMETIC");         //11 
 
         tokenType.add("SEMICOLON");          //12
         tokenType.add("LPAREN");             //13
@@ -337,7 +338,7 @@ public class LexerDraft {
                 if (symbolTable.get(i).equals("while") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles WHILE token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(0) + "\n");
+                    //System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(0) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(0) + "\n";
                     tokenInfo.add(tokenType.get(0));
                     getNextString();
@@ -346,7 +347,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("for") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles FOR token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(1) + "\n");
+                    //System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(1) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(1) + "\n";
                     tokenInfo.add(tokenType.get(1));
                     getNextString();
@@ -355,7 +356,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("switch") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles SWITCH token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(2) + "\n");
+                    //System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(2) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(2) + "\n";
                     tokenInfo.add(tokenType.get(2));
                     getNextString();
@@ -364,7 +365,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("if") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles SWITCH token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(3) + "\n");
+                    //System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(3) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(3) + "\n";
                     tokenInfo.add(tokenType.get(3));
                     getNextString();
@@ -373,7 +374,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("else") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles SWITCH token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(3) + "\n");
+                    //System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(3) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(3) + "\n";
                     tokenInfo.add(tokenType.get(3));
                     getNextString();
@@ -386,7 +387,7 @@ public class LexerDraft {
                     {
                         //PRINT token case (System.out.print or System.out.println)
                         int temp_position = position;
-                        System.out.print("\nLexeme: " + inputList.get(temp_position) + inputList.get(++temp_position) + inputList.get(++temp_position) + inputList.get(++temp_position) + inputList.get(++temp_position) + " Token:" + tokenType.get(8) + "\n");
+                        //System.out.print("\nLexeme: " + inputList.get(temp_position) + inputList.get(++temp_position) + inputList.get(++temp_position) + inputList.get(++temp_position) + inputList.get(++temp_position) + " Token:" + tokenType.get(8) + "\n");
                         
                         outString = outString +"Lexeme:" + inputList.get(position) + inputList.get(position+1) + inputList.get(position+2) + inputList.get(position+3) + inputList.get(position+4) + " Token:" + tokenType.get(8) + "\n";
                         tokenInfo.add(tokenType.get(8));
@@ -399,7 +400,7 @@ public class LexerDraft {
                     else
                     {
                         //Other keywords
-                        System.out.print("\nLexeme: " + symbolTable.get(i) + " Token:" + tokenType.get(5) + "\n");
+                        //System.out.print("\nLexeme: " + symbolTable.get(i) + " Token:" + tokenType.get(5) + "\n");
                         outString = outString +"Lexeme:" + symbolTable.get(i) + " Token:" + tokenType.get(5) + "\n";
                         tokenInfo.add(tokenType.get(5));
                     }
@@ -420,7 +421,7 @@ public class LexerDraft {
                     literStr = literStr + currentString;
                     getNextString();
                     tokenInfo.add("String_Literals");
-                    System.out.print("\nLexeme:" + literStr + " Token:" + tokenType.get(22) + "\n");
+                    //System.out.print("\nLexeme:" + literStr + " Token:" + tokenType.get(22) + "\n");
                     outString = outString + "Lexeme:" + literStr + " Token:" + tokenType.get(22) + "\n"; //****
                     listOfStringLit.add(lineNumbers.get(position-1)); //line number for string
                     listOfComments.add(literStr); //comment string
@@ -440,7 +441,7 @@ public class LexerDraft {
                     listOfComments.add(lineNumbers.get(position-1));
                     listOfComments.add(comStr);
 
-                    System.out.print("\nLexeme:" + comStr + " Token:" + tokenType.get(24) + "\n");
+                    // System.out.print("\nLexeme:" + comStr + " Token:" + tokenType.get(24) + "\n");
                     outString = outString + "Lexeme:" + comStr + " Token:" + tokenType.get(24) + "\n";
                     tokenInfo.add(tokenType.get(24));
                     break;
@@ -475,7 +476,7 @@ public class LexerDraft {
                     listOfComments.add(lineNumbers.get(comStrLine));
                     listOfComments.add(comStr);
 
-                    System.out.print("\nLexeme:" + comStr + " Token:" + tokenType.get(24) + "\n");
+                    // System.out.print("\nLexeme:" + comStr + " Token:" + tokenType.get(24) + "\n");
                     outString = outString + "Lexeme:" + comStr + " Token:" + tokenType.get(24) + "\n";
                     tokenInfo.add(tokenType.get(24));
                     break;
@@ -483,7 +484,7 @@ public class LexerDraft {
                 else if (symbolTable.subList(54*2,58*2+1).contains(symbolTable.get(i)) && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles SYMBOLS token type
-                    System.out.print("\nLexeme: " + symbolTable.get(i) + " Token:" + tokenType.get(7) + "\n");
+                    // System.out.print("\nLexeme: " + symbolTable.get(i) + " Token:" + tokenType.get(7) + "\n");
                     outString = outString +"Lexeme:" + symbolTable.get(i) + " Token:" + tokenType.get(7) + "\n";
                     tokenInfo.add(tokenType.get(7));
                     getNextString();
@@ -492,7 +493,7 @@ public class LexerDraft {
                 else if (symbolTable.subList(44*2,47*2+1).contains(symbolTable.get(i)) && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles ARITHMETIC token type
-                    System.out.print("\nLexeme: " + symbolTable.get(i) + " Token:" + tokenType.get(11) + "\n");
+                    // System.out.print("\nLexeme: " + symbolTable.get(i) + " Token:" + tokenType.get(11) + "\n");
                     outString = outString +"Lexeme:" + symbolTable.get(i) + " Token:" + tokenType.get(11) + "\n";
                     tokenInfo.add(tokenType.get(11));
                     getNextString();
@@ -504,13 +505,13 @@ public class LexerDraft {
                     if((inputList.get(position).equals(">") && inputList.get(position + 1).equals("=")) || (inputList.get(position).equals("<") && inputList.get(position + 1).equals("=")))
                     {
                         //case of >= or <=
-                        System.out.print("\nLexeme: " + symbolTable.get(i+4) + " Token:" + tokenType.get(9) + "\n");
+                        // System.out.print("\nLexeme: " + symbolTable.get(i+4) + " Token:" + tokenType.get(9) + "\n");
                         outString = outString +"Lexeme:" + symbolTable.get(i+4) + " Token:" + tokenType.get(9) + "\n";
                         getNextString();
                     }
                     else
                     {
-                        System.out.print("\nLexeme: " + symbolTable.get(i) + " Token:" + tokenType.get(9) + "\n");
+                        // System.out.print("\nLexeme: " + symbolTable.get(i) + " Token:" + tokenType.get(9) + "\n");
                         outString = outString +"Lexeme:" + symbolTable.get(i) + " Token:" + tokenType.get(9) + "\n";
                     }
                     tokenInfo.add(tokenType.get(9));
@@ -520,7 +521,7 @@ public class LexerDraft {
                 else if(symbolTable.get(i).equals("=") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handle ASSIGNMENT tokens
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(10) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(10) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(10) + "\n";
                     tokenInfo.add(tokenType.get(10));
                     getNextString();
@@ -536,7 +537,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals(";") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles SEMICOLON token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(12) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(12) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(12) + "\n";
                     tokenInfo.add(tokenType.get(12));
                     getNextString();
@@ -545,7 +546,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("(") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles LPAREN token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(13) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(13) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(13) + "\n";
                     tokenInfo.add(tokenType.get(13));
                     getNextString();
@@ -554,7 +555,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals(")") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles RPAREN token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(14) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(14) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(14) + "\n";
                     tokenInfo.add(tokenType.get(14));
                     getNextString();
@@ -563,7 +564,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("[") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles LBRACKET token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(15) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(15) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(15) + "\n";
                     tokenInfo.add(tokenType.get(15));
                     getNextString();
@@ -572,7 +573,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("]") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles RBRACKET token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(16) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(16) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(16) + "\n";
                     tokenInfo.add(tokenType.get(16));
                     getNextString();
@@ -581,7 +582,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("{") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles LBRACE token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(17) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(17) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(17) + "\n";
                     tokenInfo.add(tokenType.get(17));
                     getNextString();
@@ -590,7 +591,7 @@ public class LexerDraft {
                 else if (symbolTable.get(i).equals("}") && currentString.equals(symbolTable.get(i)))
                 {
                     // Handles RBRACE token type
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(18) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(18) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(18) + "\n";
                     tokenInfo.add(tokenType.get(18));
                     getNextString();
@@ -599,7 +600,7 @@ public class LexerDraft {
                 else if (!symbolTable.contains(currentString) && currentString.matches("^\\d+$"))  // if value doesn't match anything in the symbol table AND is an integer
                 {
                     //handles integers
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(19) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(19) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(19) + "\n";
                     tokenInfo.add(tokenType.get(19));
                     getNextString();
@@ -610,7 +611,7 @@ public class LexerDraft {
                 else if (!symbolTable.contains(currentString) && currentString.matches("^([+-]?\\d*\\.?\\d*)$"))  // if value doesn't match anything in the symbol table AND is an float
                 {
                     //handle float
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(21) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(21) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(21) + "\n";
                     tokenInfo.add(tokenType.get(21));
                     getNextString();
@@ -619,7 +620,7 @@ public class LexerDraft {
                 else if (!symbolTable.contains(currentString))
                 {
                     // Handles IDENTIFIERS
-                    System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(6) + "\n");
+                    // System.out.print("\nLexeme: " + currentString + " Token:" + tokenType.get(6) + "\n");
                     outString = outString + "Lexeme:" + currentString + " Token:" + tokenType.get(6) + "\n";
                     tokenInfo.add(tokenType.get(6));
                     getNextString();
